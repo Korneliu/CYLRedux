@@ -2,20 +2,59 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'normalize.css/normalize.css'
 import './styles/styles.scss'
-import Header from '../src/components/Header';
-import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import configureStore from '../src/store/configureStore';
 
-const store = createStore((state = { count: 0 }, action) => {
+
+const store = configureStore()
+
+const template = (
+  <div>
+    <Provider store={store} />
+  </div>
+)
+
+ReactDOM.render(template, document.getElementById('app'))
+
+
+
+/*
+const person = {
+  name: 'Max',
+  age: 43,
+  location: {
+    city: 'Aliso',
+    //temp: 92
+  }
+}
+
+
+const { name, age } = person
+const { city, temp: temperature = 10 } = person.location;
+
+console.log(name, age)
+console.log(city, temperature)
+
+const bookStore = ['verne', 'eco', 'lem']
+
+const [old, , scifi] = bookStore
+
+console.log(old, scifi)
+
+
+  / Reducers
+// 1. Reducers are pure functions
+// 2. Never change state or action
+
+const countReducer = (state = { count: 0 }, action) => {
   switch (action.type) {
     case 'INCREMENT':
-      const incrementBy = typeof action.incrementBy === 'number' ? action.incrementBy : 1
       return {
-        count: state.count + incrementBy
+        count: state.count + action.incrementBy
       };
     case 'DECREMENT':
-      const decrementBy = typeof action.decrementBy === 'number' ? action.decrementBy : 1
       return {
-        count: state.count - decrementBy
+        count: state.count - action.decrementBy
       };
     case 'SET':
       return {
@@ -28,42 +67,41 @@ const store = createStore((state = { count: 0 }, action) => {
     default:
       return state
   }
+}
+
+
+
+const incrementCount = ({ incrementBy = 1 } = {}) => ({
+  type: 'INCREMENT',
+  incrementBy
 });
 
-console.log(store.getState());
+const decrementCount = ({ decrementBy = 1 } = {}) => ({
+  type: 'DECREMENT',
+  decrementBy
+})
 
-store.subscribe(() => {
+const setCount = ({ count } = {}) => ({
+  type: 'SET',
+  count
+})
+
+const resetCount = () => ({
+  type: 'RESET'
+})
+
+const store = createStore(countReducer);
+
+const unsubscribe = store.subscribe(() => {
   console.log(store.getState());
 })
 
-store.dispatch({
-  type: 'INCREMENT',
-  incrementBy: 5
-});
+store.dispatch(incrementCount({ incrementBy: 5 }));
+store.dispatch(incrementCount({ incrementBy: 15 }));
+store.dispatch(decrementCount({ decrementBy: 30 }))
 
-store.dispatch({
-  type: 'INCREMENT'
-});
+store.dispatch(setCount({ count: 101 }));
+store.dispatch(resetCount());
 
-store.dispatch({
-  type: 'RESET'
-});
 
-store.dispatch({
-  type: 'DECREMENT',
-  decrementBy: 10
-});
-
-store.dispatch({
-  type: 'SET',
-  count: 101
-})
-
-const template = (
-  <div>
-    <Header />
-  </div>
-)
-
-ReactDOM.render(template, document.getElementById('app'))
-
+*/
