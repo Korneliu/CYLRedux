@@ -1,16 +1,31 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import 'normalize.css/normalize.css'
-import './styles/styles.scss'
+import './styles/styles.scss';
+import Header from './components/Header';
+import { addNote } from './actions/notes';
 import { Provider } from 'react-redux';
 import configureStore from '../src/store/configureStore';
 
 
+
+
 const store = configureStore()
+
+const state = store.getState();
+console.log(state);
+
+store.subscribe(() => {
+  console.log(store.getState())
+})
+
+store.dispatch(addNote({ comment: 'Good Day', numberOfTries: 3 }));
+
 
 const template = (
   <div>
     <Provider store={store} />
+    <Header />
   </div>
 )
 
@@ -96,8 +111,7 @@ const unsubscribe = store.subscribe(() => {
   console.log(store.getState());
 })
 
-store.dispatch(incrementCount({ incrementBy: 5 }));
-store.dispatch(incrementCount({ incrementBy: 15 }));
+
 store.dispatch(decrementCount({ decrementBy: 30 }))
 
 store.dispatch(setCount({ count: 101 }));
