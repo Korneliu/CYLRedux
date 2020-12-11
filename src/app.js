@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import 'normalize.css/normalize.css'
 import './styles/styles.scss';
 import Header from './components/Header';
-import { addNote } from './actions/notes';
+import { addNote, removeNote } from './actions/notes';
 import { Provider } from 'react-redux';
 import configureStore from '../src/store/configureStore';
 
@@ -13,13 +13,18 @@ import configureStore from '../src/store/configureStore';
 const store = configureStore()
 
 const state = store.getState();
-console.log(state);
+
 
 store.subscribe(() => {
   console.log(store.getState())
 })
 
-store.dispatch(addNote({ comment: 'Good Day', numberOfTries: 3 }));
+const noteOne = store.dispatch(addNote({ comment: 'Good Day', numberOfTries: 3 }));
+const noteTwo = store.dispatch(addNote({ comment: 'Bad day', numberOfTries: 6 }));
+
+store.dispatch(removeNote({ id: noteOne.note.id }))
+
+
 
 
 const template = (

@@ -17,3 +17,8 @@ export const addNote = (
   }
 });
 
+export const removeNote = ({ id } = {}) => ({
+  type: 'REMOVE_NOTE',
+  id
+})
+
