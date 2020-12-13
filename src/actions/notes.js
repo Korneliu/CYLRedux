@@ -22,3 +22,9 @@ export const removeNote = ({ id } = {}) => ({
   id
 })
 
+export const editNote = (id, updates) => ({
+  type: 'EDIT_NOTE',
+  id,
+  updates
+})
+
