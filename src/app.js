@@ -25,18 +25,19 @@ const getNotes = (notes, { text, setTextFilter, sortBy, sortByNumber, startDate,
   })
 }
 
-
 const store = configureStore()
+
 
 store.subscribe(() => {
   const state = store.getState();
   const visibleNotes = getNotes(state.notes, state.filters, state.numbers)
-  console.log(visibleNotes)
+  //console.log(visibleNotes)
+  console.log(state)
 })
 
 
-const noteOne = store.dispatch(addNote({ comment: 'Good Day', numberOfTries: 4, createdAt: -22000 }));
-const noteTwo = store.dispatch(addNote({ comment: 'Bad day', numberOfTries: 6, createdAt: -1000 }));
+/* const noteOne = store.dispatch(addNote({ comment: 'Good Day', numberOfTries: 4, createdAt: -22000 }));
+const noteTwo = store.dispatch(addNote({ comment: 'Bad day', numberOfTries: 6, createdAt: -1000 })); */
 
 store.dispatch(generateRandomNumber());
 /*store.dispatch(removeNote({ id: noteOne.note.id }))
@@ -47,7 +48,7 @@ store.dispatch(editNote(noteTwo.note.id, { numberOfTries: 10 }))*/
 
 
 store.dispatch(sortByDate());*/
-store.dispatch(sortByNumberOfTries());
+//store.dispatch(sortByNumberOfTries());
 
 
 //store.dispatch(setStartDate(125));
