@@ -10,7 +10,7 @@ export default (state = numbersDefaultReducer, action) => {
     case 'GENERATE_RANDOM_NUMBER':
       return {
         ...state,
-        randomNumber: Math.floor(Math.random() * 10)
+        randomNumber: Math.ceil(Math.random() * 10)
       }
     case 'GENERATE_LUCKY_NUMBER':
       return {
