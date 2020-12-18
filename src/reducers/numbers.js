@@ -15,7 +15,7 @@ export default (state = numbersDefaultReducer, action) => {
     case 'GENERATE_LUCKY_NUMBER':
       return {
         ...state,
-        luckyNumber: Math.floor(Math.random() * 10)
+        luckyNumber: Math.ceil(Math.random() * 10)
       }
     default:
       return state

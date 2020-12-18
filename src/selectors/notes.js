@@ -1,5 +1,4 @@
 
-
 export default (notes, { text, sortBy, startDate, endDate }) => {
   return notes.filter((note) => {
     const startDateMatch = typeof startDate !== 'number' || note.createdAt >= startDate;
@@ -14,3 +13,5 @@ export default (notes, { text, sortBy, startDate, endDate }) => {
     }
   })
 }
+
+

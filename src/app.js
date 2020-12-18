@@ -6,8 +6,10 @@ import Header from './components/Header';
 import configureStore from '../src/store/configureStore';
 import { addNote } from './actions/notes';
 import { setTextFilter } from './actions/filters';
-import getNotes from '../src/selectors/notes'
+import getNotes from '../src/selectors/notes';
+import getNumbers from '../src/selectors/numbers';
 import { generateRandomNumber, generateLuckyNumber } from './actions/numbers';
+import { random } from '../src/selectors/notes'
 import { Provider } from 'react-redux';
 
 
@@ -17,32 +19,16 @@ const store = configureStore()
 store.subscribe(() => {
   const state = store.getState();
   const visibleNotes = getNotes(state.notes, state.filters, state.numbers)
-  console.log(visibleNotes)
-  console.log(state)
+  const visibleNumbers = getNumbers(state.numbers)
+  console.log(visibleNotes, visibleNumbers)
+
 })
 
 
-/* const noteOne = store.dispatch(addNote({ comment: 'Good Day', numberOfTries: 4, createdAt: -22000 }));
-const noteTwo = store.dispatch(addNote({ comment: 'Bad day', numberOfTries: 6, createdAt: -1000 })); */
-
 store.dispatch(addNote({ comment: 'first try', numberOfTries: 2 }))
-store.dispatch(generateRandomNumber());
-store.dispatch(generateLuckyNumber())
-/*store.dispatch(removeNote({ id: noteOne.note.id }))
-store.dispatch(editNote(noteTwo.note.id, { numberOfTries: 10 }))*/
+store.dispatch(generateRandomNumber(random));
+//store.dispatch(generateLuckyNumber());
 
-//store.dispatch(setTextFilter('good'));
-/*store.dispatch(setTextFilter());
-
-
-store.dispatch(sortByDate());*/
-//store.dispatch(sortByNumberOfTries());
-
-
-//store.dispatch(setStartDate(125));
-//store.dispatch(setStartDate(10));
-
-//store.dispatch(setEndDate(999));
 
 
 
