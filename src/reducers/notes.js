@@ -21,7 +21,11 @@ export default (state = notesReducerDefaultState, action) => {
           return note;
         }
       })
-
+    case 'SET_START_DATE':
+      return [
+        ...state,
+        action.date
+      ]
     default:
       return state;
   }

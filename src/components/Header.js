@@ -1,8 +1,10 @@
 import React from 'react';
+import NotesList from './NotesList';
 
 const Header = () => (
   <div>
-    <h1>Check Your Luck</h1>
+
+    <NotesList />
   </div>
 )
 

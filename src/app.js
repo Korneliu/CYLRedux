@@ -1,16 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import 'normalize.css/normalize.css'
 import './styles/styles.scss';
-import Header from './components/Header';
+
 import configureStore from '../src/store/configureStore';
+import Header from './components/Header';
 import { addNote } from './actions/notes';
 import { setTextFilter } from './actions/filters';
 import getNotes from '../src/selectors/notes';
 import getNumbers from '../src/selectors/numbers';
 import { generateRandomNumber, generateLuckyNumber } from './actions/numbers';
-import { random } from '../src/selectors/notes'
-import { Provider } from 'react-redux';
+
 
 
 
@@ -21,21 +22,25 @@ store.subscribe(() => {
   const visibleNotes = getNotes(state.notes, state.filters, state.numbers)
   const visibleNumbers = getNumbers(state.numbers)
   console.log(visibleNotes, visibleNumbers)
-
 })
 
 
-store.dispatch(addNote({ comment: 'first try', numberOfTries: 2 }))
-store.dispatch(generateRandomNumber(random));
-//store.dispatch(generateLuckyNumber());
+store.dispatch(addNote({ comment: 'good day', numberOfTries: 6 }))
+store.dispatch(addNote({ comment: 'awsome day', numberOfTries: 1 }))
 
+
+store.dispatch(generateRandomNumber());
+/* store.dispatch(generateLuckyNumber());
+store.dispatch(generateRandomNumber());
+ */
 
 
 
 const template = (
   <div>
-    <Provider store={store} />
-    <Header />
+    <Provider store={store}>
+      <Header />
+    </Provider>
   </div>
 )
 
