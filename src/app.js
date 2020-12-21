@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import 'normalize.css/normalize.css'
 import './styles/styles.scss';
-
 import configureStore from '../src/store/configureStore';
 import Header from './components/Header';
 import { addNote } from './actions/notes';
@@ -19,20 +18,23 @@ const store = configureStore()
 
 store.subscribe(() => {
   const state = store.getState();
-  const visibleNotes = getNotes(state.notes, state.filters, state.numbers)
+  const visibleNotes = getNotes(state.notes, state.filters)
   const visibleNumbers = getNumbers(state.numbers)
   console.log(visibleNotes, visibleNumbers)
 })
 
 
 store.dispatch(addNote({ comment: 'good day', numberOfTries: 6 }))
-store.dispatch(addNote({ comment: 'awsome day', numberOfTries: 1 }))
+store.dispatch(addNote({ comment: 'awesome day', numberOfTries: 1 }))
+store.dispatch(addNote({ comment: 'so so day', numberOfTries: 12 }))
+store.dispatch(setTextFilter('a'))
+
 
 
 store.dispatch(generateRandomNumber());
-/* store.dispatch(generateLuckyNumber());
-store.dispatch(generateRandomNumber());
- */
+store.dispatch(generateLuckyNumber());
+
+
 
 
 
