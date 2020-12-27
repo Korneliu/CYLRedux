@@ -27,12 +27,16 @@ store.subscribe(() => {
 store.dispatch(addNote({ comment: 'good day', numberOfTries: 6 }))
 store.dispatch(addNote({ comment: 'awesome day', numberOfTries: 1 }))
 store.dispatch(addNote({ comment: 'so so day', numberOfTries: 12 }))
-store.dispatch(setTextFilter('a'))
+store.dispatch(setTextFilter('awesome'));
 
+setTimeout(() => {
+  store.dispatch(setTextFilter('good'))
+}, 3000);
 
-
-store.dispatch(generateRandomNumber());
+/* store.dispatch(generateRandomNumber());
 store.dispatch(generateLuckyNumber());
+ */
+
 
 
 
