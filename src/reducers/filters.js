@@ -2,7 +2,7 @@
 const filtersReducerDefaultState = {
   text: '',
   sortBy: 'date',
-  sortByNumber: 'numberOfTries',
+  numberOfTries: 0,
   startDate: undefined,
   endDate: undefined
 };

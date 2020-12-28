@@ -24,9 +24,11 @@ store.subscribe(() => {
 })
 
 
-store.dispatch(addNote({ comment: 'good day', numberOfTries: 6 }))
+
 store.dispatch(addNote({ comment: 'awesome day', numberOfTries: 1 }))
-store.dispatch(addNote({ comment: 'so so day', numberOfTries: 12 }))
+store.dispatch(addNote({ comment: 'so so day', numberOfTries: 12, createdAt: 2000 }))
+store.dispatch(addNote({ comment: 'great day', numberOfTries: 3, createdAt: 3000 }))
+store.dispatch(addNote({ comment: 'good day', numberOfTries: 6, createdAt: 1000 }))
 store.dispatch(setTextFilter('awesome'));
 
 setTimeout(() => {
